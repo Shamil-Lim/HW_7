@@ -1,0 +1,18 @@
+[
+    {
+      "name": "Heise",
+      "url": "https://www.heise.de/news/"
+    },
+    {
+      "name": "TechRepublic",
+      "url": "https://www.techrepublic.com/"
+    },
+    {
+      "name": "Wired",
+      "url": "https://www.wired.com/"
+    },
+    {
+      "name": "TechStage",
+      "url": "https://www.techstage.de/"
+    }
+  ]
