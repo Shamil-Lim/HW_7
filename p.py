@@ -9,7 +9,7 @@ CACHE_FILE = "new_cache.json"
 CACHE_EXPIRY = 3600
 
 def read_news_source(config_path="sources.json"):
-    with open(config_path, "r") as file:
+    with open(config_path, "r", encoding="utf-8") as file:
         return json.load(file)
     
 def fetch_news(url):
@@ -32,12 +32,12 @@ def is_cache_valid(cache_file = CACHE_FILE):
     return False
 
 def load_cache(results, cache_file=CACHE_FILE):
-    with open(cache_file, "w") as file:
-        json.dump(results, file)
+    with open(cache_file, "r", encoding="utf-8") as file:
+        return json.load(file)
 
 def cache_results(results, cache_file=CACHE_FILE):
-    with open(cache_file, "w") as file:
-        json.dump(results, file)
+    with open(cache_file, "w", encoding="utf-8") as file:
+        json.dump(results, file, indent=4)
 
 def main():
     if is_cache_valid():
@@ -48,8 +48,8 @@ def main():
         sources = read_news_source()
         news_data = {}
         for source in sources:
-            url = source.get["url"]
-            name = source.get["name", url]
+            url = source.get("url")
+            name = source.get("name", url)
             headlines = fetch_news(url)
             news_data[name] = headlines
         cache_results(news_data)
@@ -58,6 +58,13 @@ def main():
         print(f"{source}:")
         for headline in headlines:
             print(f"- {headline}")
+    for source in sources:
+        url = source.get("url")
+        name = source.get("name", url)
+        print(f"Fetching headlines from {name}...")
+        headlines = fetch_news(url)
+        news_data[name] = headlines
+        print(f"Fetched {len(headlines)} headlines from {name}")
 
 if __name__ == "__main__":
     main()  
