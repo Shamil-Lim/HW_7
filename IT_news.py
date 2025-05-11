@@ -1,3 +1,8 @@
+# This program is made by: 
+# leonard.grill@stud.th-deg.de
+# hryhorii.kuznetsov@stud.th-deg.de 
+# shamil.liman@stud.th-deg.de
+
 import json
 import os
 import time
